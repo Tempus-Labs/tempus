@@ -185,3 +185,5 @@ build/
 dist/
 wheels/
 *.egg-info
+
+test.py
