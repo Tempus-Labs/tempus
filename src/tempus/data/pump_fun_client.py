@@ -1,37 +1,32 @@
 import asyncio
-import websockets
+import websocket
 import json
 import time
 
 class PumpFunClient:
-    def __init__(self, uri: str = "wss://pumpportal.fun/api/data"):
+    def __init__(self, uri: str = "wss://pumpportal.fun/api/data", max_coin: int=5):
         self.uri = uri
+        self.max_coin = max_coin
 
-    async def subscribe(self, method: str, keys: list, duration: int):
-        async with websockets.connect(self.uri) as websocket:
-            payload = {
-                "method": method,
-                "keys": keys
-            }
-            await websocket.send(json.dumps(payload))
-            end_time = time.time() + duration
-            collected_data = []
-
-            while time.time() < end_time:
-                message = await websocket.recv()
-                collected_data.append(json.loads(message))
-
-            return collected_data
-
-    async def subscribe_new_token(self, duration: int):
-        return await self.subscribe("subscribeNewToken", [], duration)
-
-    async def subscribe_account_trade(self, keys: list, duration: int):
-        return await self.subscribe("subscribeAccountTrade", keys, duration)
-
-    async def subscribe_token_trade(self, keys: list, duration: int):
-        return await self.subscribe("subscribeTokenTrade", keys, duration)
-
-# To run a specific subscription, you can use:
-# data = asyncio.get_event_loop().run_until_complete(PumpFunClient().subscribe_new_token(10))
-# print(data)
+    def get_pump_fun_data(self):
+        uri = "wss://pumpportal.fun/api/data"
+        coins = []
+        
+        # Establish WebSocket connection
+        ws = websocket.create_connection(uri)
+        
+        # Subscribing to token creation events
+        payload = {
+            "method": "subscribeNewToken",
+        }
+        ws.send(json.dumps(payload))
+        
+        while True:
+            message = ws.recv()
+            data = json.loads(message)
+            coins.append(data)
+            
+            if len(coins) == self.max_coin+1:
+                print(coins)  # Print last 5 messages
+                ws.close()
+                return coins
