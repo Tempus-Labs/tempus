@@ -1,10 +1,22 @@
-# Tempus Labs
+<html>
+    <h1 align="center">
+        Tempus Labs
+    </h1>
+    <h3 align="center">
+        Your Gateway to Smarter Blockchain Market Intelligence
+    </h3>
 
 <div align="center">
-  <img src="./src/img/tempus-cover-nobg.png" alt="Tempus Banner" width="700" />
+
+[![Static Badge](https://img.shields.io/badge/tempus-documentation-red?style=flat)](https://tempuslabs.gitbook.io/tempus)
 </div>
 
-Tempus is a Quant AI Agent Framework designed for the Solana ecosystem, providing users with the tools to build, deploy, and customize AI-driven quantitative analysis models.
+</html>
+
+Tempus is a Quant AI Agent Framework designed for the Solana ecosystem, providing users with the tools to build, deploy, and customize AI-driven quantitative analysis models. By leveraging modular architecture and AI-powered analytics, Tempus enhances decision-making in crypto markets, offering deep insights into:
+- Token performance
+- Portfolio management
+- Market trends
 
 ---
 
@@ -31,6 +43,7 @@ Tempus is a Quant AI Agent Framework designed for the Solana ecosystem, providin
 ### Prerequisites
 
 - [Python 3.10+](https://www.python.org/)
+- LLM API Key
 
 ---
 
