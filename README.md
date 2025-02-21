@@ -57,7 +57,7 @@ Tempus is a Quant AI Agent Framework designed for the Solana ecosystem, providin
    ```
 
 2. **Create the Environment File**:
-
+   Set up a `.env` file to store your API key securely:
    ```bash
    OPENAI_API_KEY=your_api_key # Fill if you are using OpenAI
    DEEPSEEK_API_KEY=your_api_key # Fill if you are using Deepseek
@@ -68,15 +68,15 @@ Tempus is a Quant AI Agent Framework designed for the Solana ecosystem, providin
    ```python
    from tempus.agents import QuantAIAgent
 
-   # Initialize agent with Deepseek
-    agent = QuantAIAgent(llm_provider="deepseek", model_name="deepseek-chat")
-
-    # Analyze pump.fun market
-    response = agent.chat("Analyze the top 10 trending ai meta on Pump.fun")
+    # Initialize with default settings (OpenAI)
+    agent = QuantAIAgent()
+    
+    # Basic analysis
+    response = agent.chat("Analyze BTC market trends")
     print(response)
-
-    # Stream chat for analyze $ai16z coin
-    for chunk in agent.chat_stream("What about $ai16z coin?"):
+    
+    # Streaming responses
+    for chunk in agent.chat_stream("What's happening with ETH?"):
     print(chunk, end="")
    ```
 ---
