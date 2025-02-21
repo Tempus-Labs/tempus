@@ -1,6 +1,10 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
-name = "tempus"
-version = "0.1.0"
+name = "tempus-labs"
+version = "1.0.0"
 description = "Next-Gen Quant AI Agents Framework on Solana"
 readme = "README.md"
 requires-python = ">=3.10"
