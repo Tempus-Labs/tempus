@@ -23,7 +23,7 @@ Tempus is a Quant AI Agent Framework designed for the Solana ecosystem, providin
 ## Overview
 
 <div align="center">
-  <img src="./src/img/tempus-workflow.png" alt="Tempus Workflow" width="100%" />
+  <img src="./img/tempus-workflow.png" alt="Tempus Workflow" width="100%" />
 </div>
 
 ## Features
