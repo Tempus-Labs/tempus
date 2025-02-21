@@ -1,7 +1,7 @@
 # Tempus Labs
 
 <div align="center">
-  <img src="./src/img/tempus-cover-nobg.png" alt="Tempus Banner" width="700" />
+  <img src="./img/tempus-cover-nobg.png" alt="Tempus Banner" width="700" />
 </div>
 
 Tempus is a Quant AI Agent Framework designed for the Solana ecosystem, providing users with the tools to build, deploy, and customize AI-driven quantitative analysis models.
@@ -11,7 +11,7 @@ Tempus is a Quant AI Agent Framework designed for the Solana ecosystem, providin
 ## Overview
 
 <div align="center">
-  <img src="./src/img/tempus-workflow.png" alt="Tempus Workflow" width="100%" />
+  <img src="./img/tempus-workflow.png" alt="Tempus Workflow" width="100%" />
 </div>
 
 ## Features

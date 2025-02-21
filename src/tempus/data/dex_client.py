@@ -1,4 +1,3 @@
-from dexscreener import DexscreenerClient
 from typing import Any, List
 import requests
 

@@ -1,3 +1,0 @@
-from .text_extraction import extract_contract_address_and_ticker
-
-__all__ = [extract_contract_address_and_ticker]
