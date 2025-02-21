@@ -44,6 +44,7 @@ Tempus is a Quant AI Agent Framework designed for the Solana ecosystem, providin
 
 - [Python 3.10+](https://www.python.org/)
 - LLM API Key
+- [Chromedriver](https://developer.chrome.com/docs/chromedriver/downloads)
 
 ---
 
