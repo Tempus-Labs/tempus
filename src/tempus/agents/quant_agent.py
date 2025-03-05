@@ -107,21 +107,6 @@ class QuantAIAgent:
         return ToolNode(self.tools).with_fallbacks(
             [RunnableLambda(self._handle_tool_error)], exception_key="error"
         )
-
-    def _print_event(event: dict, _printed: set, max_length=1500):
-        current_state = event.get("dialog_state")
-        if current_state:
-            print("Currently in: ", current_state[-1])
-        message = event.get("messages")
-        if message:
-            if isinstance(message, list):
-                message = message[-1]
-            if message.id not in _printed:
-                msg_repr = message.pretty_repr(html=True)
-                if len(msg_repr) > max_length:
-                    msg_repr = msg_repr[:max_length] + " ... (truncated)"
-                print(msg_repr)
-                _printed.add(message.id)
         
     def _build_graph(self) -> Runnable:
         """Build the agent's workflow graph."""
@@ -198,7 +183,7 @@ class QuantAIAgent:
                 
         return "No response generated. Please try again."
         
-    def chat_stream(self, message: str):
+    def chat_stream(self, user_message: str):
         """
         Send a message to the agent and get a streaming response.
         
@@ -208,23 +193,28 @@ class QuantAIAgent:
         Yields:
             str: Chunks of the agent's response
         """
-        response_stream = self.graph.stream({"messages": ("user", message)}, config=self.config, stream_mode="values")
+        response_stream = self.graph.stream({"messages": ("user", user_message)}, config=self.config, stream_mode="values")
 
 
         current_response = []
+        _printed = set()
         for event in response_stream:
-            # event['messages'][-1].pretty_print()
-            if isinstance(event, dict) and "messages" in event:
-                for msg in event["messages"]:
-                    if isinstance(msg, AIMessage):
-                        chunk = msg.content
-                        current_response.append(chunk)
-                        yield event['messages'][-1]
+            current_state = event.get("dialog_state")
+            if current_state:
+                print("Currently in: ", current_state[-1])
+            message = event.get("messages")
+            if message:
+                if isinstance(message, list):
+                    message = message[-1]
+                if message.id not in _printed:
+                    current_response.append(message.content)
+                    _printed.add(message.id)
+                    yield message
         
         # Update conversation history after streaming completes
         if current_response:
             self.conversation_history.extend([
-                HumanMessage(content=message),
+                HumanMessage(content=user_message),
                 AIMessage(content="".join(current_response))
             ])
         
