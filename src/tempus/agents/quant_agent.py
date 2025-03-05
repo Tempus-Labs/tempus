@@ -176,7 +176,7 @@ class QuantAIAgent:
         Returns:
             str: The agent's response
         """
-        _printed = set()
+        
         responses = self.graph.invoke({"messages": ("user", message)}, config=self.config)
         for event in responses['messages']:
             event.pretty_print()
@@ -213,12 +213,13 @@ class QuantAIAgent:
 
         current_response = []
         for event in response_stream:
-            event['messages'][-1].pretty_print()
+            # event['messages'][-1].pretty_print()
             if isinstance(event, dict) and "messages" in event:
                 for msg in event["messages"]:
                     if isinstance(msg, AIMessage):
                         chunk = msg.content
-                        current_response.append(chunk)\
+                        current_response.append(chunk)
+                        yield event['messages'][-1]
         
         # Update conversation history after streaming completes
         if current_response:

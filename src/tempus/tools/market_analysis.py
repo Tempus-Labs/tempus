@@ -47,7 +47,7 @@ def analyze_contract(contract_address: str) -> Dict[str, Any]:
     ]
 
     response = llm.invoke(chat_messages)
-    return {"analysis": response}
+    return {"analysis": response, "dex_data":json.dumps(dex_data[0])}
 
 @tool
 def analyze_ticker(ticker: str) -> Dict[str, Any]:
@@ -83,7 +83,7 @@ def analyze_ticker(ticker: str) -> Dict[str, Any]:
     ]
 
     response = llm.invoke(chat_messages)
-    return {"analysis": response}
+    return {"analysis": response, 'dex_data':json.dumps(dex_data[0])}
 
 @tool
 def analyze_market_trends(top_n_tokens: int) -> Dict[str, Any]:
@@ -123,7 +123,7 @@ def analyze_market_trends(top_n_tokens: int) -> Dict[str, Any]:
     ]
 
     response = llm.invoke(chat_messages)
-    return {"market_analysis": response}
+    return {"market_analysis": response, 'dex_data':json.dumps(final_data)}
 
 @tool
 def analyze_meta_market(top_n_tokens: int=10, meta: str="ai") -> Dict[str, Any]:
@@ -162,6 +162,6 @@ def analyze_meta_market(top_n_tokens: int=10, meta: str="ai") -> Dict[str, Any]:
         ]
 
         response = llm.invoke(chat_messages)
-        return {"market_analysis": response}
+        return {"market_analysis": response, 'dex_data':json.dumps(final_data)}
     except Exception as e:
         return {"error": f"An error occurred: {str(e)}"}
