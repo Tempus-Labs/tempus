@@ -3,7 +3,7 @@
         Tempus Labs
     </h1>
     <h3 align="center">
-        Your Gateway to Smarter Blockchain Market Intelligence
+        Your Gateway to Smarter Solana Market Intelligence
     </h3>
 
 <div align="center">
@@ -77,7 +77,7 @@ Tempus is a Quant AI Agent Framework designed for the Solana ecosystem, providin
     
     # Streaming responses
     for chunk in agent.chat_stream("What's happening with ETH?"):
-    print(chunk, end="")
+    chunk.pretty_print()
    ```
 ---
 
